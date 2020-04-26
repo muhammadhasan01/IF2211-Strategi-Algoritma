@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Information Extractor App</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.filenames.label }}<br>
+            {{ form.filenames(size=32) }}<br>
+            <p>Masukkan nama file beserta tipe ekstensinya dipisahkan dengan koma (contoh: test1.txt,test2.txt,test3.txt)</p>
+            {% for error in form.filenames.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <p>
+            {{ form.keyword.label }}<br>
+            {{ form.keyword(size=32) }}<br>
+            {% for error in form.keyword.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.algochoice.label }}<br>
+            {{ form.algochoice(size=32) }}<br>
+            {% for error in form.algochoice.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% if results %}
+        {% for result in results %}
+        <p>Jumlah: {{ result.jumlah }}</p>
+        <p>Waktu: {{ result.waktu }}</p>
+        <p>Kalimat : </p>
+        <p>{{ result.kalimat }}</p>
+        <p>({{ result.source }})</p>
+        <br>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

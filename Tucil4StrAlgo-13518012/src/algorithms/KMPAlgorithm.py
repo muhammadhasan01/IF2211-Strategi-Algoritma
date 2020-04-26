@@ -14,7 +14,7 @@ def searchPatternInTextWithKMP(pattern, text):
     textLength = len(text)
     iterText = 0
     iterPattern = 0
-    while (iterText < textLength):
+    while iterText < textLength:
         # if current character in the pattern matches with text
         # increment both iter
         if text[iterText] == pattern[iterPattern]:
